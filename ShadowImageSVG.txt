@@ -1,0 +1,80 @@
+"data:image/svg+xml," & EncodeUrl(
+    "<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'>
+<svg version='1.1'
+    xmlns='http://www.w3.org/2000/svg'
+    xmlns:xlink='http://www.w3.org/1999/xlink' preserveAspectRatio='xMidYMid meet' viewBox='0 0 " & Self.Width & " " & Self.Height & "' width='" & Self.Width & "' height='" & Self.Height & "'>
+    <defs>" &
+    // ----- Box for fill
+ "<path d='" &
+ // Upper left
+ "M" & Max(5 * 3 - 0, 0) & " " & Max(5 * 3 - 0,0) &
+    // Upper right
+ "L" & Self.Width - Max(5 * 3 + 0, 0) & " " & Max(5 * 3 - 0, 0) &
+    // Lower right
+ "L" & Self.Width - Max(5 * 3 + 0, 0) & " " & Self.Height - Max(5 * 3 + 0, 0) &
+    // Lower left
+ "L" & Max(5 * 3 - 0, 0) & " " & Self.Height - Max(5 * 3 + 0, 0) & 
+ "Z' id='box' stroke='" & "#ff0000" & "' stroke-width='" & 0 & "'></path>
+    </defs>
+    <g>
+        <g>
+            <filter id='shadow' x='-20%' y='-20%' width='200%' height='200%' filterUnits='userSpaceOnUse' primitiveUnits='userSpaceOnUse'>
+                <feFlood></feFlood>
+                <feComposite in2='SourceAlpha' operator='in'></feComposite>
+                <feGaussianBlur stdDeviation='" & 5 & "'></feGaussianBlur>
+                <feOffset dx='" & 0 & "' dy='" & 0 & "' result='afterOffset'></feOffset>
+                <feFlood flood-color='" & "#000000" & "' flood-opacity='" & Substitute(Text(0.5), ",", ".") & "'></feFlood>
+                <feComposite in2='afterOffset' operator='in'></feComposite>
+                <feMorphology operator='dilate' radius='1'></feMorphology>
+                <feComposite in2='SourceAlpha' operator='out'></feComposite>
+            </filter>" &
+            // ----- Box for shadow
+ "<path d='" &
+ // Upper left
+ "M" & Max(5 * 3 - 0, 0) & " " & Max(5 * 3 - 0, 0) &
+    // Upper right
+ "L" & Self.Width - Max(5 * 3 + 0, 0) & " " & Max(5 * 3 - 0, 0) &
+    // Lower right
+ "L" & Self.Width - Max(5 * 3 + 0, 0) & " " & Self.Height - Max(5 * 3 + 0, 0) &
+    // Lower left
+ "L" & Max(5 * 3 - 0, 0) & " " & Self.Height - Max(5 * 3 + 0, 0) & 
+ "Z' id='Component1' filter='url(#shadow)'></path>
+        </g>
+        <use xlink:href='#box' opacity='1' fill='" & "#ffffff" & "' fill-opacity='" & Substitute(Text(0), ",", ".") & "'></use>
+    </g>
+    <g>
+        " &
+        // ----- Edge
+ If(
+        true,
+        Switch(
+            "left",
+            "left",// -- Position: left
+            "<path d='" &
+        // Upper left
+ "M" & Max(5 * 3 - 0, 0) + 0 & " " & Max(5 * 3 - 0, 0) + 0 &
+        // Upper right
+ "L" & Max(5 * 3 - 0, 0) + 0 + 8 & " " & Max(5 * 3 - 0, 0) + 0 &
+        // Lower right
+ "L" & Max(5 * 3 - 0, 0) + 0 + 8 & " " & Self.Height - Max(5 * 3 + 0, 0) - 0 &
+        // Lower left
+ "L" & Max(5 * 3 - 0, 0) + 0 & " " & Self.Height - Max(5 * 3 + 0, 0) - 0 & 
+ "Z' id='box' stroke-width='0' fill='" & "#ffffff" & "'></path>",
+             "right",// -- Position: right
+            "<path d='" &
+        // Upper left
+ "M" & Self.Width - Max(5 * 3 + 0, 0) - 0 - 8 & " " & Max(5 * 3 - 0, 0) + 0 &
+        // Upper right
+ "L" & Self.Width - Max(5 * 3 + 0, 0) - 0 & " " & Max(5 * 3 - 0, 0) + 0 &
+        // Lower right
+ "L" & Self.Width - Max(5 * 3 + 0, 0) - 0 & " " & Self.Height - Max(5 * 3 + 0, 0) - 0 &
+        // Lower left
+ "L" & Self.Width - Max(5 * 3 + 0, 0) - 0 - 8 & " " & Self.Height - Max(5 * 3 + 0, 0) - 0 & 
+ "Z' id='box' stroke-width='0' fill='" & "#ffffff" & "'></path>"
+           
+        )
+    ) & "
+    </g>
+</svg>"
+)
